@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Teacher Portal - ZamQuiz Champion</title>
+  <link rel="stylesheet" href="../css/glassmorphism.css">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap">
+</head>
+
+<body>
+  <!-- Password Overlay -->
+  <div id="teacher-login-overlay" class="overlay">
+    <div class="modal-content glass-card">
+      <h2 style="margin-bottom: 1rem;">Teacher Access</h2>
+      <p>Please enter the teacher password to continue.</p>
+      <input type="password" id="teacher-password" class="form-control" placeholder="Enter Password" autofocus>
+      <button id="login-btn" class="btn btn-primary w-full">Access Portal</button>
+      <p id="login-error" style="color: var(--zambia-red); margin-top: 1rem; display: none;">Incorrect password. Try
+        again.</p>
+      <a href="../index.html" style="display: block; margin-top: 1.5rem; color: var(--text-dark); opacity: 0.7;">Back to
+        Home</a>
+    </div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="glass-nav">
+    <div class="logo-area">
+      <a href="../index.html"
+        style="font-weight: 700; font-size: 1.6rem; display: flex; align-items: center; gap: 12px; letter-spacing: -0.05em;">
+        ZamQuiz <span style="color: var(--accent-blue);">Champion</span>
+      </a>
+    </div>
+
+    <button class="mobile-menu-btn" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-links">
+      <a href="leaderboard.html">Leaderboard</a>
+      <a href="progress.html">Progress</a>
+      <button id="logout-btn" class="btn"
+        style="background: rgba(255,255,255,0.1); color: white; margin-left: 10px; border-color: var(--glass-border);">Logout</button>
+    </div>
+  </nav>
+
+  <!-- Header -->
+  <header class="hero-section" style="padding: 4rem 2rem;">
+    <h1>Teacher Portal</h1>
+    <p style="color: var(--text-muted); font-size: 1.1rem;">Manage curriculum and monitor student progress</p>
+  </header>
+
+  <!-- Main Content -->
+  <main class="glass-container">
+    <div class="grid" style="grid-template-columns: 1fr 2fr; align-items: start;">
+      <!-- Sidebar: Subject Management -->
+      <aside class="glass-card">
+        <h3>Manage Subjects</h3>
+        <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 1.5rem;">Add or remove school subjects.</p>
+
+        <div id="subjects-list-admin" style="margin-bottom: 2rem;">
+          <!-- Dynamic subjects list -->
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 2rem 0;">
+
+        <h3>Data Backup</h3>
+        <p style="font-size: 0.9rem; opacity: 0.8; margin-bottom: 1rem;">Export data to save or import to restore.</p>
+        <div style="display: flex; gap: 10px; flex-direction: column;">
+          <button onclick="handleExportData()" class="btn"
+            style="background: var(--zambia-orange); color: white !important;">Export Data (Backup)</button>
+          <div style="position: relative;">
+            <input type="file" id="import-file" style="display: none;" accept=".json" onchange="handleImportData(this)">
+            <button onclick="document.getElementById('import-file').click()" class="btn"
+              style="background: var(--text-main); color: white !important; width: 100%;">Import Data (Restore)</button>
+          </div>
+        </div>
+
+        <hr style="border: 0; border-top: 1px solid var(--glass-border); margin: 2rem 0;">
+
+        <h4>Add New Subject</h4>
+        <div class="form-group">
+          <input type="text" id="new-subject-name" class="form-control" placeholder="Subject Name (e.g. History)">
+          <textarea id="new-subject-desc" class="form-control" rows="2" placeholder="Brief description"></textarea>
+          <button id="add-subject-btn" class="btn btn-green w-full">Add Subject</button>
+        </div>
+      </aside>
+
+      <!-- Main Area: Question Management -->
+      <section class="glass-card">
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2rem;">
+          <h2>Create Questions</h2>
+          <div id="success-message"
+            style="display: none; background: var(--zambia-green); color: white; padding: 0.5rem 1rem; border-radius: 8px;">
+            Saved successfully!
+          </div>
+        </div>
+
+        <form id="question-form">
+          <div class="grid" style="grid-template-columns: 1fr 1fr; gap: 1rem;">
+            <div class="form-group">
+              <label for="subject">Select Subject:</label>
+              <select id="subject" class="form-control" required>
+                <!-- Dynamic options -->
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="question-type">Question Type:</label>
+              <select id="question-type" class="form-control" required>
+                <option value="multiple">Multiple Choice</option>
+                <option value="boolean">True/False</option>
+                <option value="fill">Fill in the Blank</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="question-text">Question Text:</label>
+            <textarea id="question-text" class="form-control" rows="3" required
+              placeholder="Type your question here..."></textarea>
+          </div>
+
+          <div id="options-container" class="form-group">
+            <label id="options-label">Options (one per line):</label>
+
+            <!-- Multiple Choice & Boolean are handled here -->
+            <div id="boolean-options" style="display: none; margin-bottom: 1rem;">
+              <div style="display: flex; gap: 20px;">
+                <label><input type="radio" name="boolean-answer" value="True"> True</label>
+                <label><input type="radio" name="boolean-answer" value="False"> False</label>
+              </div>
+            </div>
+
+            <textarea id="custom-options" class="form-control" rows="4"
+              placeholder="Option 1&#10;Option 2&#10;Option 3&#10;Option 4"></textarea>
+
+            <div id="correct-choice-container" class="form-group">
+              <label for="correct-option">Correct Choice (exact match):</label>
+              <input type="text" id="correct-option" class="form-control" placeholder="e.g. Option 1">
+            </div>
+          </div>
+
+          <div id="correct-answer-container" class="form-group" style="display: none;">
+            <label for="correct-answer">Correct Answer:</label>
+            <input type="text" id="correct-answer" class="form-control"
+              placeholder="Type the answer students must provide">
+          </div>
+
+          <button type="submit" class="btn btn-primary w-full" style="margin-top: 1rem;">Add Question to
+            Subject</button>
+        </form>
+
+        <div style="margin-top: 3rem;">
+          <h3>Recent Questions</h3>
+          <div id="questions-preview">
+            <!-- Preview items here -->
+          </div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer
+    style="margin-top: 6rem; padding: 4rem 2rem; text-align: center; color: var(--text-muted); border-top: 1px solid var(--glass-border);">
+    <p>ZamQuiz Champion &copy; 2025</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/storage.js"></script>
+  <script src="../js/admin.js"></script>
+</body>
+
+</html>

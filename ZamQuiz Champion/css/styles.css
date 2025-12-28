@@ -1,0 +1,443 @@
+/* Main Styles for ZamQuiz Champion */
+
+/* Zambian-inspired color variables */
+:root {
+  /* New Palette */
+  --black: #0a0908;
+  --jet-black: #22333b;
+  --almond-cream: #eae0d5;
+  --khaki-beige: #c6ac8f;
+  --stone-brown: #5e503f;
+
+  /* Theme Mappings */
+  --zambia-green: var(--jet-black);
+  /* Primary strong color */
+  --zambia-black: var(--black);
+  --zambia-orange: var(--khaki-beige);
+  /* Secondary accent */
+  --zambia-red: var(--stone-brown);
+  /* Using stone brown as the "red" equivalent for consistency, or keep red? Let's use stone brown for a consistent earth theme */
+  --light-gray: var(--almond-cream);
+  /* Main background */
+  --dark-gray: var(--jet-black);
+  /* Main text */
+  --success-color: #4CAF50;
+  /* Keep functional colors distinct */
+  --warning-color: var(--khaki-beige);
+  --error-color: #f44336;
+}
+
+/* Common styles */
+body,
+html {
+  font-family: 'Poppins', sans-serif;
+  line-height: 1.5;
+  margin: 0;
+  padding: 0;
+  background-color: var(--light-gray);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 600;
+  margin-bottom: 16px;
+}
+
+p {
+  margin-bottom: 16px;
+  line-height: 1.5;
+}
+
+/* Color classes */
+.zambia-green {
+  background-color: var(--zambia-green);
+  color: white;
+}
+
+.zambia-orange {
+  background-color: var(--zambia-orange);
+  color: white;
+}
+
+.zambia-black {
+  background-color: var(--zambia-black);
+  color: white;
+}
+
+/* Logo */
+.logo {
+  height: 28px;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+/* Hero section */
+.hero-section {
+  background-image: linear-gradient(rgba(34, 51, 59, 0.8), rgba(0, 0, 0, 0.8)), url('../images/zambia-students.jpg');
+  background-size: cover;
+  background-position: center;
+  height: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.hero-content {
+  max-width: 800px;
+}
+
+.hero-content h1 {
+  font-size: 2.5rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Quote styling */
+.quote {
+  font-style: italic;
+  margin: 20px auto;
+  max-width: 800px;
+  color: var(--dark-gray);
+  padding: 16px;
+  border-left: 4px solid var(--zambia-green);
+  background-color: rgba(34, 51, 59, 0.05);
+}
+
+/* Subject cards */
+.subject-card {
+  height: 300px;
+  transition: transform 0.3s ease;
+  background-color: white;
+  border-radius: 8px;
+}
+
+.subject-card:hover {
+  transform: translateY(-10px);
+}
+
+.subject-icon {
+  width: 80px;
+  height: 80px;
+  margin: 0 auto 16px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+}
+
+.math-icon {
+  background-image: url('../images/math-icon.png');
+}
+
+.science-icon {
+  background-image: url('../images/science-icon.png');
+}
+
+.ict-icon {
+  background-image: url('../images/ict-icon.png');
+}
+
+.civics-icon {
+  background-image: url('../images/civics-icon.png');
+}
+
+/* Stats card */
+.stats-card {
+  background-color: white;
+  border-radius: 8px;
+}
+
+.stat-circle {
+  width: 100px;
+  height: 100px;
+  margin: 0 auto;
+  background-color: var(--zambia-green);
+  color: white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+}
+
+.stat-circle span {
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.stat-circle p {
+  font-size: 0.8rem;
+  margin: 0;
+}
+
+/* Admin card */
+.admin-card {
+  background-color: white;
+  border-radius: 8px;
+  padding: 24px;
+}
+
+/* Quiz container */
+.quiz-container {
+  max-width: 800px;
+  margin: 32px auto;
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Timer */
+.timer {
+  margin-bottom: 16px;
+  padding: 8px 16px;
+  background-color: var(--zambia-orange);
+  color: white;
+  text-align: center;
+  border-radius: 4px;
+  font-weight: 600;
+}
+
+/* Question styles */
+.question {
+  margin-bottom: 24px;
+  padding: 16px;
+  background-color: rgba(34, 51, 59, 0.05);
+  border-radius: 4px;
+}
+
+.question-text {
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 16px;
+}
+
+/* Options styling */
+.options {
+  margin-bottom: 16px;
+}
+
+.option {
+  display: block;
+  margin-bottom: 8px;
+  padding: 12px 16px;
+  background-color: white;
+  border: 1px solid var(--zambia-green);
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.option:hover {
+  background-color: rgba(34, 51, 59, 0.1);
+}
+
+.option.selected {
+  background-color: var(--zambia-green);
+  color: white;
+}
+
+.option.correct {
+  background-color: var(--success-color);
+  color: white;
+}
+
+.option.incorrect {
+  background-color: var(--error-color);
+  color: white;
+}
+
+/* Results styles */
+.results {
+  text-align: center;
+  padding: 24px;
+  border-radius: 8px;
+  margin-top: 32px;
+  background-color: rgba(34, 51, 59, 0.05);
+}
+
+.score {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--zambia-green);
+}
+
+/* Leaderboard styles */
+.leaderboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 32px;
+}
+
+.leaderboard-table th,
+.leaderboard-table td {
+  padding: 12px 16px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+
+.leaderboard-table th {
+  background-color: var(--zambia-green);
+  color: white;
+}
+
+.leaderboard-table tr:nth-child(even) {
+  background-color: rgba(34, 51, 59, 0.05);
+}
+
+.leaderboard-table tr:hover {
+  background-color: rgba(34, 51, 59, 0.1);
+}
+
+/* Progress styles */
+.progress-card {
+  margin-bottom: 16px;
+  padding: 16px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.progress-bar-container {
+  width: 100%;
+  background-color: #ddd;
+  border-radius: 4px;
+  margin-bottom: 8px;
+}
+
+.progress-bar {
+  height: 20px;
+  background-color: var(--zambia-green);
+  border-radius: 4px;
+  text-align: center;
+  color: white;
+  font-weight: 600;
+  line-height: 20px;
+}
+
+/* Two player mode */
+.player-card {
+  background-color: white;
+  padding: 16px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.player-1 {
+  border-left: 4px solid var(--zambia-green);
+}
+
+.player-2 {
+  border-left: 4px solid var(--zambia-orange);
+}
+
+/* Admin/teacher page */
+.question-form {
+  background-color: white;
+  padding: 24px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  margin-bottom: 32px;
+}
+
+.form-group {
+  margin-bottom: 16px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.form-control {
+  width: 100%;
+  padding: 8px 12px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.option-group {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+}
+
+.option-group input[type="radio"] {
+  margin-right: 8px;
+}
+
+.option-group input[type="text"] {
+  flex: 1;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+.fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.slide-in {
+  animation: slideIn 0.5s ease-in-out;
+}
+
+/* Responsive adjustments */
+@media (max-width: 600px) {
+  .hero-section {
+    height: 200px;
+  }
+
+  .hero-content h1 {
+    font-size: 1.8rem;
+  }
+
+  .stat-circle {
+    width: 80px;
+    height: 80px;
+  }
+
+  .subject-card {
+    height: auto;
+    padding: 16px;
+  }
+
+  .w3-quarter {
+    width: 100%;
+  }
+}
+
+@media (min-width: 601px) and (max-width: 992px) {
+  .w3-quarter {
+    width: 50%;
+  }
+}

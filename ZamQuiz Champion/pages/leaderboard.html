@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leaderboard - ZamQuiz Champion</title>
+  <link rel="stylesheet" href="../css/glassmorphism.css">
+  <style>
+    .subject-tabs {
+      display: flex;
+      gap: 10px;
+      overflow-x: auto;
+      padding-bottom: 10px;
+      margin-bottom: 2rem;
+    }
+
+    .subject-tab {
+      padding: 0.6rem 1.2rem;
+      border-radius: 20px;
+      border: 1px solid var(--glass-border);
+      background: var(--glass-bg);
+      cursor: pointer;
+      white-space: nowrap;
+      transition: all 0.2s;
+    }
+
+    .subject-tab.active-tab {
+      background: var(--zambia-green);
+      color: white;
+      border-color: var(--zambia-green);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1rem;
+    }
+
+    th,
+    td {
+      padding: 1rem;
+      text-align: left;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    th {
+      font-weight: 600;
+      opacity: 0.7;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="glass-nav">
+    <div class="logo-area">
+      <a href="../index.html"
+        style="font-weight: 700; font-size: 1.6rem; display: flex; align-items: center; gap: 12px; letter-spacing: -0.05em;">
+        ZamQuiz <span style="color: var(--accent-blue);">Champion</span>
+      </a>
+    </div>
+
+    <button class="mobile-menu-btn" aria-label="Toggle Menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+    <div class="nav-links">
+      <a href="leaderboard.html" class="active">Leaderboard</a>
+      <a href="progress.html">Progress</a>
+      <a href="two-player.html">Battle</a>
+      <a href="study-tips.html">Study Tips</a>
+      <a href="admin.html" class="btn btn-primary" style="margin-left: 1rem;">Teacher Portal</a>
+    </div>
+  </nav>
+
+  <!-- Main Content -->
+  <main class="container">
+    <div style="margin-top: 5rem;">
+      <div style="text-align: center; margin-bottom: 3rem;">
+        <h1 id="leaderboard-title">Leaderboard</h1>
+        <p style="opacity: 0.8;">Fuel your competitive spirit and climb the ranks!</p>
+      </div>
+
+      <div id="subject-tabs-container" class="subject-tabs">
+        <!-- Tabs added dynamically -->
+      </div>
+
+      <div class="glass-card" style="padding: 0;">
+        <div style="overflow-x: auto;">
+          <table id="leaderboard-table">
+            <!-- Table content will be loaded by JavaScript -->
+          </table>
+        </div>
+      </div>
+
+      <div style="margin-top: 2rem; display: flex; justify-content: space-between; align-items: center;">
+        <button onclick="handleResetLeaderboard()" class="btn"
+          style="color: var(--zambia-red); border-color: var(--zambia-red); background: transparent;">Reset
+          Rankings</button>
+        <a href="../index.html" class="btn btn-primary">Back to Home</a>
+      </div>
+    </div>
+  </main>
+
+  <footer
+    style="margin-top: 6rem; padding: 4rem 2rem; text-align: center; color: var(--text-muted); border-top: 1px solid var(--glass-border);">
+    <p>ZamQuiz Champion &copy; 2025</p>
+  </footer>
+
+  <!-- Scripts -->
+  <script src="../js/storage.js"></script>
+  <script src="../js/main.js"></script>
+  <script src="../js/leaderboard.js"></script>
+</body>
+
+</html>
