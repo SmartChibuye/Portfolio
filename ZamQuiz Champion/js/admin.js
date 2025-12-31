@@ -1,6 +1,9 @@
 // Admin/Teacher functionality for ZamQuiz Champion
 
 document.addEventListener('DOMContentLoaded', function () {
+  // Setup mobile menu
+  setupMobileMenu();
+
   // Check if already logged in this session
   if (sessionStorage.getItem('teacherLoggedIn') === 'true') {
     document.getElementById('teacher-login-overlay').style.display = 'none';
@@ -21,7 +24,7 @@ document.addEventListener('DOMContentLoaded', function () {
   if (logoutBtn) {
     logoutBtn.addEventListener('click', () => {
       sessionStorage.removeItem('teacherLoggedIn');
-      window.location.reload();
+      window.location.href = '../index.html';
     });
   }
 
@@ -47,6 +50,37 @@ document.addEventListener('DOMContentLoaded', function () {
   renderQuestionSubjects();
   updateFormFields();
 });
+
+// Setup mobile menu toggle (local to admin page)
+function setupMobileMenu() {
+  const menuBtn = document.querySelector('.mobile-menu-btn');
+  const navLinks = document.querySelector('.nav-links');
+
+  if (menuBtn && navLinks) {
+    menuBtn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      menuBtn.classList.toggle('active');
+      navLinks.classList.toggle('active');
+    });
+
+    // Close menu when clicking outside
+    document.addEventListener('click', (e) => {
+      if (navLinks.classList.contains('active') && !navLinks.contains(e.target) && !menuBtn.contains(e.target)) {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+      }
+    });
+
+    // Close menu when a link is clicked
+    navLinks.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => {
+        menuBtn.classList.remove('active');
+        navLinks.classList.remove('active');
+      });
+    });
+  }
+}
+
 
 // Handle teacher login
 function handleLogin() {
